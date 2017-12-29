@@ -5,7 +5,7 @@ import React from "react";
 //using es6 function syntax to create a component (Best practice)
 const person = props => {
   return (
-    <div style={{ background: "pink" }}>
+    <div onClick={props.myclick} style={{ background: "pink" }}>
       <p>
         I am {props.name} and {props.age} years old.
       </p>
