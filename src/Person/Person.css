@@ -6,3 +6,11 @@
   text-align: center;
   box-shadow: 0 2px 3px #ccc;
 }
+
+/* 
+if min width if 500px then overwrite person width
+@media (min-width: 500px) {
+  .Person {
+    width: 450px;
+  }
+} */

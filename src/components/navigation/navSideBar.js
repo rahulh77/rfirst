@@ -1,25 +1,30 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Main from "./../Main";
-// const Home = () => <h1>Home</h1>;
 
 const NavSideBar = () => {
   return (
-    <div className="navSideBar" style={styles.navSideBar}>
+    <div>
       <Router>
-        <div styles={{ width: "100px" }}>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>{" "}
-            </li>
-            <li>
-              <Link to={{ pathname: "/about" }}>About</Link>{" "}
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
-          <div>
+        <div className="row row-eq-height" style={{}}>
+          <div
+            className="col col-md-2"
+            style={{ padding: "20px", backgroundColor: "gray", font: 14 }}
+          >
+            <ul>
+              <li>
+                <Link to="/">Home</Link>{" "}
+              </li>
+              <li>
+                <Link to={{ pathname: "/about" }}>About</Link>{" "}
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="col col-md-10" style={{ padding: "20px" }}>
             <Switch>
               <Route exact path="/" component={Main} />
               <Route path="/about" component={() => <h1>About</h1>} />
@@ -41,10 +46,13 @@ const NavSideBar = () => {
   );
 };
 
-const styles = {
-  navSideBar: {
-    font: 14
-  }
-};
+// const styles = {
+//   navSideBar: {
+//     font: 14,
+//     backgroundColor: "gray",
+//     padding: "20px",
+//     height: "100%"
+//   }
+// };
 
 export default NavSideBar;

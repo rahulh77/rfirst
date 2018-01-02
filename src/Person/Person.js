@@ -6,8 +6,12 @@ import "./Person.css";
 
 //using es6 function syntax to create a component (Best practice)
 const person = props => {
+  const style = {
+    "@media(min-width: 500px)": { width: "450px" }
+  };
+
   return (
-    <div onClick={props.myclick} className="Person">
+    <div onClick={props.myclick} className="Person" style={style}>
       <p>
         I am {props.name} and {props.age} years old.
       </p>
