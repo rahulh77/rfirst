@@ -7,24 +7,34 @@ const NavSideBar = () => {
   return (
     <div className="navSideBar" style={styles.navSideBar}>
       <Router>
-        <div>
-          <Link to="/">Home</Link>{" "}
-          <Link to={{ pathname: "/about" }}>About</Link>{" "}
-          <Link to="/contact">Contact</Link>
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route path="/about" component={() => <h1>About</h1>} />
-            <Route path="/contact" render={() => <h1>Contact Us</h1>} />
-            <Route
-              path="/blog"
-              children={({ match }) => (
-                <li className={match ? "active" : ""}>
-                  <Link to="/blog">Blog</Link>
-                </li>
-              )}
-            />
-            <Route render={() => <h1>Page not found</h1>} />
-          </Switch>
+        <div styles={{ width: "100px" }}>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>{" "}
+            </li>
+            <li>
+              <Link to={{ pathname: "/about" }}>About</Link>{" "}
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route path="/about" component={() => <h1>About</h1>} />
+              <Route path="/contact" render={() => <h1>Contact Us</h1>} />
+              <Route
+                path="/blog"
+                children={({ match }) => (
+                  <li className={match ? "active" : ""}>
+                    <Link to="/blog">Blog</Link>
+                  </li>
+                )}
+              />
+              <Route render={() => <h1>Page not found</h1>} />
+            </Switch>
+          </div>
         </div>
       </Router>
     </div>

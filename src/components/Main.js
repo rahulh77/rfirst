@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Radium from "radium";
 
 // eslint-disable-next-line
 import logo from "./../logo.svg";
@@ -14,9 +15,9 @@ class Main extends Component {
     abc: {},
     showPeople: true,
     people: [
-      { name: "Max", age: 20 },
-      { name: "Rick", age: 26 },
-      { name: "David", age: 27 }
+      { id: 1, name: "Max", age: 20 },
+      { id: 2, name: "Rick", age: 26 },
+      { id: 3, name: "David", age: 27 }
     ]
   };
 
@@ -27,9 +28,9 @@ class Main extends Component {
     //setState will merge new state with old state. i.e. overwrite new people instead of old and keep abc as is
     this.setState({
       people: [
-        { name: "Rahul", age: 20 },
-        { name: "Ben", age: 26 },
-        { name: "David", age: 27 }
+        { id: 1, name: "Rahul", age: 20 },
+        { id: 2, name: "Ben", age: 26 },
+        { id: 3, name: "David", age: 27 }
       ]
     });
   };
@@ -42,7 +43,38 @@ class Main extends Component {
     this.setState({ showPeople: !this.state.showPeople });
   };
 
+  deletePerson(personIndex) {
+    const peopleArray = [...this.state.people];
+    peopleArray.splice(personIndex, 1);
+    this.setState({ people: peopleArray });
+  }
+
   render() {
+    const styles = {
+      backgroundColor: "red",
+      ":hover": { backgroundColor: "lightgreen", color: "black" } //pseudo-selector works with Radium
+    };
+
+    let person = null;
+    if (this.state.showPeople) {
+      person = (
+        <div>
+          {this.state.people.map((x, index) => {
+            return (
+              <Person
+                key={x.id}
+                myclick={() => this.deletePerson(index)} // a pattern that passes method as a prop that would change state in another component
+                name={x.name}
+                age={x.age}
+              />
+            );
+          })}
+        </div>
+      );
+      styles.backgroundColor = "green";
+      styles[":hover"] = { backgroundColor: "salmon", color: "gray" };
+    }
+
     return (
       <div className="App-intro">
         <h1>Shopping List for {this.props.name}</h1>
@@ -60,29 +92,14 @@ class Main extends Component {
         </div>
         <br />
         <br />
-        <button onClick={this.togglePeople}>Toggle People</button>
-        {this.state.showPeople ? (
-          <div>
-            <Person
-              name={this.state.people[0].name}
-              age={this.state.people[0].age}
-            />
-            <Person
-              myclick={this.switchNameHandler} // a pattern that passes method as a prop that would change state in another component
-              name={this.state.people[1].name}
-              age={this.state.people[1].age}
-            >
-              My hobby is running
-            </Person>
-            <Person
-              name={this.state.people[2].name}
-              age={this.state.people[2].age}
-            />
-          </div>
-        ) : null}
+        <button style={styles} onClick={this.togglePeople}>
+          Toggle People
+        </button>
+        {person}
       </div>
     );
   }
 }
 
-export default Main;
+//Higher order component
+export default Radium(Main);
