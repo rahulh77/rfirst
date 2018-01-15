@@ -1,17 +1,17 @@
 //Naming convention for a component is firstCharacter in Caps
 // function names starts with smaller case
 import React from "react";
-import Radium from "radium";
-import "./Person.css";
+//import Radium from "radium";
+import classes from "./Person.css";
 
 //using es6 function syntax to create a component (Best practice)
 const person = props => {
-  const style = {
-    "@media(min-width: 500px)": { width: "450px" }
-  };
+  // const style = {
+  //   "@media(min-width: 500px)": { width: "450px" }
+  // };
 
   return (
-    <div onClick={props.myclick} className="Person" style={style}>
+    <div onClick={props.myclick} className={classes.Person}>
       <p>
         I am {props.name} and {props.age} years old.
       </p>
@@ -22,14 +22,5 @@ const person = props => {
   );
 };
 
-export default Radium(person);
-
-// class Person extends Component {
-//     render() {
-//         return (
-//             <div>
-
-//             </div>
-//         );
-//     }
-// }
+export default person;
+//export default Radium(person);

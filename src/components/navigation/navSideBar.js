@@ -1,17 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Main from "./../Main";
+//import Bootstrap from "bootstrap/dist/css/bootstrap.css";
 
 const NavSideBar = () => {
   return (
     <div>
       <Router>
-        <div className="row row-eq-height" style={{}}>
+        <div className="row row-eq-height">
           <div
             className="col col-md-2"
             style={{ padding: "20px", backgroundColor: "gray", font: 14 }}
           >
-            <ul>
+            <Link to="/">Home</Link>{" "}
+            <Link to={{ pathname: "/about" }}>About</Link>{" "}
+            <Link to="/contact">Contact</Link>
+            {/* <ul>
               <li>
                 <Link to="/">Home</Link>{" "}
               </li>
@@ -21,7 +25,7 @@ const NavSideBar = () => {
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div className="col col-md-10" style={{ padding: "20px" }}>
