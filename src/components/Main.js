@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Radium from "radium";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 // eslint-disable-next-line
 import logo from "./../logo.svg";
@@ -61,12 +62,13 @@ class Main extends Component {
         <div>
           {this.state.people.map((x, index) => {
             return (
-              <Person
-                key={x.id}
-                myclick={() => this.deletePerson(index)} // a pattern that passes method as a prop that would change state in another component
-                name={x.name}
-                age={x.age}
-              />
+              <ErrorBoundary key={x.id}>
+                <Person
+                  myclick={() => this.deletePerson(index)} // a pattern that passes method as a prop that would change state in another component
+                  name={x.name}
+                  age={x.age}
+                />
+              </ErrorBoundary>
             );
           })}
         </div>

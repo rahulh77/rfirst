@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Main from "./../Main";
+import Category from "./../Screens/Category";
 //import Bootstrap from "bootstrap/dist/css/bootstrap.css";
 
 const NavSideBar = () => {
@@ -13,25 +14,14 @@ const NavSideBar = () => {
             style={{ padding: "20px", backgroundColor: "gray", font: 14 }}
           >
             <Link to="/">Home</Link>{" "}
-            <Link to={{ pathname: "/about" }}>About</Link>{" "}
+            <Link to={{ pathname: "/category" }}>Category</Link>{" "}
             <Link to="/contact">Contact</Link>
-            {/* <ul>
-              <li>
-                <Link to="/">Home</Link>{" "}
-              </li>
-              <li>
-                <Link to={{ pathname: "/about" }}>About</Link>{" "}
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
-            </ul> */}
           </div>
 
           <div className="col col-md-10" style={{ padding: "20px" }}>
             <Switch>
               <Route exact path="/" component={Main} />
-              <Route path="/about" component={() => <h1>About</h1>} />
+              <Route path="/category" component={Category} />
               <Route path="/contact" render={() => <h1>Contact Us</h1>} />
               <Route
                 path="/blog"
