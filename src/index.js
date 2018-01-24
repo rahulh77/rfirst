@@ -1,8 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+//import Bootstrap from "bootstrap/dist/css/bootstrap.css";
+// import { BrowserRouter, Router, Route } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import "./index.css";
+import App from "./App";
+//import registerServiceWorker from './registerServiceWorker';
+
+ReactDOM.render(<App name="Rahul" />, document.getElementById("root"));
+//registerServiceWorker();
