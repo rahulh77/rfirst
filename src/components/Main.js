@@ -8,7 +8,7 @@ import logo from "./../logo.svg";
 // import NavSideBar from "./navigation/navSideBar";
 //Below Person starts with CAP. In react components starting with small are reserved for native components (div, p, h1 etc).
 //Person can be named XYZ
-import Person from "./../Person/Person";
+import Person from "./Person/Person";
 
 class Main extends Component {
   //state is reserved property of custom component.

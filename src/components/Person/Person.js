@@ -4,7 +4,7 @@ import React from "react";
 //import Radium from "radium";
 import classes from "./Person.css";
 
-//using es6 function syntax to create a component (Best practice)
+//using es6 function syntax to create a component that doesnt need state (Best practice)
 const person = props => {
   // const style = {
   //   "@media(min-width: 500px)": { width: "450px" }
