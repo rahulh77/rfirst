@@ -3,9 +3,9 @@ import { BrowserRouter } from "react-router-dom";
 //import Radium, { StyleRoot } from "radium";
 
 // eslint-disable-next-line
-import logo from "./logo.svg";
+import logo from "./../logo.svg";
 import classes from "./App.css";
-import NavSideBar from "./components/navigation/navSideBar";
+import NavSideBar from "./../components/navigation/navSideBar";
 class App extends Component {
   render() {
     return (

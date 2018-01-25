@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 // import { BrowserRouter, Router, Route } from "react-router-dom";
 
 import "./index.css";
-import App from "./App";
+import App from "./containers/App";
 //import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App name="Rahul" />, document.getElementById("root"));
