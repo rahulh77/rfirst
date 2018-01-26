@@ -4,8 +4,7 @@ import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 // eslint-disable-next-line
 import logo from "./../logo.svg";
-// import "./App.css";
-// import NavSideBar from "./navigation/navSideBar";
+
 //Below Person starts with CAP. In react components starting with small are reserved for native components (div, p, h1 etc).
 //Person can be named XYZ
 import Person from "./Person/Person";
@@ -23,7 +22,6 @@ class Main extends Component {
   };
 
   switchNameHandler = () => {
-    //console.log("hiiii");
     //wont work - instead use setState()
     //this.state.people[0].name = "Rahul";
     //setState will merge new state with old state. i.e. overwrite new people instead of old and keep abc as is
