@@ -5,8 +5,10 @@ import Radium from "radium";
 import logo from "./../logo.svg";
 
 //Below Person starts with CAP. In react components starting with small are reserved for native components (div, p, h1 etc).
-//Person can be named XYZ
+//Component fileNames starts with caps
+//Persons can be named XYZ
 import Persons from "./Persons/Persons";
+import Cockpit from "./Cockpit/Cockpit";
 
 class Main extends Component {
   //state is reserved property of custom component.
@@ -49,11 +51,6 @@ class Main extends Component {
   };
 
   render() {
-    const styles = {
-      backgroundColor: "red",
-      ":hover": { backgroundColor: "lightgreen", color: "black" } //pseudo-selector works with Radium
-    };
-
     let persons = null;
     if (this.state.showPeople) {
       persons = (
@@ -62,30 +59,21 @@ class Main extends Component {
           clicked={this.deletePersonHandler}
         />
       );
-      styles.backgroundColor = "green";
-      styles[":hover"] = { backgroundColor: "salmon", color: "gray" };
     }
 
     return (
       <div className="App-intro">
-        <h1>Shopping List for {this.props.name}</h1>
-        <h4>JSX code gets transformed to React.createElement() code</h4>
-        <button onClick={this.switchNameHandler}>State Change</button>
-        <div>
-          <button onClick={this.clickHandlerWithParameter.bind(this, "RAHUL")}>
-            Handler with parameter
-          </button>
-          {/*  convinient but inefficient syntax, as react can rerender certain things too often
-      so dont use it if bind is sufficient */}
-          <button onClick={() => this.clickHandlerWithParameter("RAHUL2")}>
-            Handler with parameter method 2
-          </button>
-        </div>
-        <br />
-        <br />
-        <button style={styles} onClick={this.togglePeople}>
-          Toggle People
-        </button>
+        <Cockpit
+          appTitle="Rahul" //if passed from parent - then appTitle={this.props.parentProp}
+          persons={this.state.persons}
+          showPeople={this.state.showPeople}
+          switchNameHandler={this.switchNameHandler}
+          togglePeopleClicked={this.togglePeople}
+          clickHandlerWithParameter={this.clickHandlerWithParameter.bind(
+            this,
+            "RAHUL"
+          )}
+        />
         {persons}
       </div>
     );
