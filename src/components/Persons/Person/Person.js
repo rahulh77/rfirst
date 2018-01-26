@@ -11,7 +11,7 @@ const person = props => {
   // };
 
   return (
-    <div onClick={props.myclick} className={classes.Person}>
+    <div onClick={props.click} className={classes.Person}>
       <p>
         I am {props.name} and {props.age} years old.
       </p>

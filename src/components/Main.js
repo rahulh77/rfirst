@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import Radium from "radium";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 // eslint-disable-next-line
 import logo from "./../logo.svg";
 
 //Below Person starts with CAP. In react components starting with small are reserved for native components (div, p, h1 etc).
 //Person can be named XYZ
-import Person from "./Person/Person";
+import Persons from "./Persons/Persons";
 
 class Main extends Component {
   //state is reserved property of custom component.
   state = {
     abc: {},
     showPeople: true,
-    people: [
+    persons: [
       { id: 1, name: "Max", age: 20 },
       { id: 2, name: "Rick", age: 26 },
       { id: 3, name: "David", age: 27 }
@@ -26,7 +25,7 @@ class Main extends Component {
     //this.state.people[0].name = "Rahul";
     //setState will merge new state with old state. i.e. overwrite new people instead of old and keep abc as is
     this.setState({
-      people: [
+      persons: [
         { id: 1, name: "Rahul", age: 20 },
         { id: 2, name: "Ben", age: 26 },
         { id: 3, name: "David", age: 27 }
@@ -42,11 +41,12 @@ class Main extends Component {
     this.setState({ showPeople: !this.state.showPeople });
   };
 
-  deletePerson(personIndex) {
-    const peopleArray = [...this.state.people];
-    peopleArray.splice(personIndex, 1);
-    this.setState({ people: peopleArray });
-  }
+  deletePersonHandler = personIndex => {
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
 
   render() {
     const styles = {
@@ -54,22 +54,13 @@ class Main extends Component {
       ":hover": { backgroundColor: "lightgreen", color: "black" } //pseudo-selector works with Radium
     };
 
-    let person = null;
+    let persons = null;
     if (this.state.showPeople) {
-      person = (
-        <div>
-          {this.state.people.map((x, index) => {
-            return (
-              <ErrorBoundary key={x.id}>
-                <Person
-                  myclick={() => this.deletePerson(index)} // a pattern that passes method as a prop that would change state in another component
-                  name={x.name}
-                  age={x.age}
-                />
-              </ErrorBoundary>
-            );
-          })}
-        </div>
+      persons = (
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+        />
       );
       styles.backgroundColor = "green";
       styles[":hover"] = { backgroundColor: "salmon", color: "gray" };
@@ -95,7 +86,7 @@ class Main extends Component {
         <button style={styles} onClick={this.togglePeople}>
           Toggle People
         </button>
-        {person}
+        {persons}
       </div>
     );
   }
