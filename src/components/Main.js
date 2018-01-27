@@ -19,7 +19,8 @@ class Main extends Component {
       { id: 1, name: "Max", age: 20 },
       { id: 2, name: "Rick", age: 26 },
       { id: 3, name: "David", age: 27 }
-    ]
+    ],
+    toggleClickedCounter: 0
   };
 
   switchNameHandler = () => {
@@ -40,7 +41,37 @@ class Main extends Component {
   };
 
   togglePeople = () => {
-    this.setState({ showPeople: !this.state.showPeople });
+    //Better way of handling setState
+    this.setState((prevState, props) => {
+      return {
+        showPeople: !this.state.showPeople,
+        toggleClickedCounter: prevState.toggleClickedCounter + 1
+      };
+    });
+    // this.setState({
+    //   showPeople: !this.state.showPeople,
+    //   // Incorrect way - as setState works async, other setState might complete after this setState (line#44)  so results are unpredictable
+    //   toggleClickedCounter: this.state.toggleClickedCounter + 1
+    // });
+  };
+
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
   };
 
   deletePersonHandler = personIndex => {
@@ -57,6 +88,7 @@ class Main extends Component {
         <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
         />
       );
     }
